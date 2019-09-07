@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Calculadora</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<style>
+		#visor{
+			border-style: solid;
+  			border-width: 2%;
+			width: 22.5vw;
+			height: 10vh;
+			font-size: 2rem;
+			padding-right: 1vw;
+			padding-left: 1vw;
+		}
+		.botoes{
+			padding-top: 1vh;
+			padding-right: 2vw;
+			padding-left: 2vw;
+		}
+		.botoes button{
+			width: 5vw;
+			height: 5vw;
+			font-size: 2rem;
+		}
+		#limpar{
+			width: 20.8vw;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="calculadora">
+			<input type="text" id="visor" readonly>
+		<div class="botoes">
+			<div>
+				<button id="limpar" onclick="limpar()">Limpar</button>
+			</div>
+			<div>
+				<button onclick="numero9()">9</button>
+				<button onclick="numero8()">8</button>
+				<button onclick="numero7()">7</button>
+				<button onclick="soma()">+</button>
+			</div>
+
+			<div>
+				<button onclick="numero6()">6</button>
+				<button onclick="numero5()">5</button>
+				<button onclick="numero4()">4</button>
+				<button onclick="subtrai()">-</button>
+			</div>
+
+			<div>
+				<button onclick="numero3()">3</button>
+				<button onclick="numero2()">2</button>
+				<button onclick="numero1()">1</button>
+				<button onclick="vezes()">*</button>
+			</div>
+
+			<div>
+				<button onclick="virgula()">,</button>
+				<button onclick="numero0()">0</button>
+				<button onclick="igual()">=</button>
+				<button onclick="divide()">/</button>
+			</div>
+
+		</div>
+	</div>
+
+	<script>
+		var valor1,valor2, somaAtiva = false, subtracaoAtiva = false
+		vezesAtiva = false, divisaoAtiva = false, virgulaAtiva = false;
+		function numero1(){
+			document.getElementById("visor").value += "1";
+		}
+		function numero2(){
+			document.getElementById("visor").value += "2";
+		}
+		function numero3(){
+			document.getElementById("visor").value += "3";
+		}
+		function numero4(){
+			document.getElementById("visor").value += "4";
+		}
+		function numero5(){
+			document.getElementById("visor").value += "5";
+		}
+		function numero6(){
+			document.getElementById("visor").value += "6";
+		}
+		function numero7(){
+			document.getElementById("visor").value += "7";
+		}
+		function numero8(){
+			document.getElementById("visor").value += "8";
+		}
+		function numero9(){
+			document.getElementById("visor").value += "9";
+		}
+		function numero0(){
+			document.getElementById("visor").value += "0";
+		}
+		function soma(){
+			valor1 = parseFloat(document.getElementById("visor").value);
+			document.getElementById("visor").value = "";
+			somaAtiva = true;
+			virgulaAtiva = false;
+		}
+		function subtrai(){
+			valor1 = parseFloat(document.getElementById("visor").value);
+			document.getElementById("visor").value = "";
+			subtracaoAtiva = true;
+			virgulaAtiva = false;
+		}
+		function vezes(){
+			valor1 = parseFloat(document.getElementById("visor").value);
+			document.getElementById("visor").value = "";
+			vezesAtiva = true;
+			virgulaAtiva = false;
+		}
+		function divide(){
+			valor1 = parseFloat(document.getElementById("visor").value);
+			document.getElementById("visor").value = "";
+			divisaoAtiva = true;
+			virgulaAtiva = false;
+		}
+		function igual(){
+			valor2 = parseFloat(document.getElementById("visor").value);
+			document.getElementById("visor").value = "";
+			if(somaAtiva){
+				document.getElementById("visor").value = valor1 + valor2;
+				somaAtiva = false;
+			}
+			if(subtracaoAtiva){
+				document.getElementById("visor").value = valor1 - valor2;
+				subtracaoAtiva = false;
+			}
+			if(vezesAtiva){
+				document.getElementById("visor").value = valor1 * valor2;
+				vezesAtiva = false;
+			}
+			if(divisaoAtiva){
+				document.getElementById("visor").value = valor1 / valor2;
+				divisaoAtiva = false;
+			}
+		}
+		function virgula(){
+			if(!virgulaAtiva){
+				if(document.getElementById("visor").value == ""){
+					document.getElementById("visor").value += "0.";
+				}
+				else{
+				document.getElementById("visor").value += ".";
+				}
+				virgulaAtiva = true;
+			}
+		}
+		function limpar(){
+			document.getElementById("visor").value = ""
+			somaAtiva = false;
+			subtracaoAtiva = false;
+			vezesAtiva = false;
+			divisaoAtiva = false;
+			virgulaAtiva = false;
+		}
+	</script>
+</body>
+
+</html>
